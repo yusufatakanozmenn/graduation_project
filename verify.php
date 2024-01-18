@@ -78,7 +78,7 @@ if (isset($_POST['submit'])) {
                         <td>3</td>
                         <td><label>Website ::*</label></td>
                         <td>
-                            <?php echo "ARVRcinemas"; ?>
+                            <?php echo "SineVizyon"; ?>
                         </td>
                     </tr>
                     <tr>

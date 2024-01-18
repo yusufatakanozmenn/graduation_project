@@ -147,29 +147,5 @@ f.top,left:d.left-f.left}},offsetParent:function(){return this.map(function(){fo
 e&&e.document?e.document.compatMode==="CSS1Compat"&&e.document.documentElement["client"+b]||e.document.body["client"+b]:e.nodeType===9?Math.max(e.documentElement["client"+b],e.body["scroll"+b],e.documentElement["scroll"+b],e.body["offset"+b],e.documentElement["offset"+b]):f===w?c.css(e,d):this.css(d,typeof f==="string"?f:f+"px")}});A.jQuery=A.$=c})(window);
 
 $(document).ready(function() {
-
-$(document)[0].oncontextmenu = function() { return false;}
-
-        $(document).mousedown(function(e){
-          if( e.button == 2 ) {
-  
-             return false;
-           } else {
-             return true;
-            }
-
-        });
-
-document.onkeydown = function(e) {
-        if (e.ctrlKey && (e.keyCode === 67 || e.keyCode === 86  || e.keyCode === 73 || e.keyCode === 85 ||  e.keyCode === 83 ||  e.keyCode === 16||  e.keyCode === 117 )) {
-                $("body" ).empty();
-				 $("body" ).append('<center><H1>Baap se Bakchodi Nahi</h1></center>')
-            return false;
-        } else if ( e.keyCode === 123 ) {
-                $("body" ).empty();
-				 $("body" ).append('<center><H1>Baap se Bakchodi Nahi</h1></center>')
-            return false;
-        }
-};
-
-  });
+        // Kaldırılan kod parçaları
+});

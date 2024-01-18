@@ -131,3 +131,13 @@ $(".admin-navigation-schedule").on('click', function () {
 $(".admin-navigation-schedule").on('click', function () {
     $('.admin-navigation-schedule-dropdwn').hide();
 });
+
+var slider = document.querySelector('.movies-inner-container');
+
+slider.addEventListener('mouseover', function() {
+    slider.classList.add('paused');
+});
+
+slider.addEventListener('mouseout', function() {
+    slider.classList.remove('paused');
+});

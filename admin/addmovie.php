@@ -22,10 +22,13 @@ if (isset($_POST['but_logout'])) {
     <title>Admin Dashboard</title>
     <link rel="icon" type="image/png" href="../img/logo.png">
     <link rel="stylesheet" href="../style/styles.css">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css"
+        integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.22/css/dataTables.bootstrap4.min.css">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 </head>
 
 <body>
@@ -35,7 +38,7 @@ if (isset($_POST['but_logout'])) {
     $messagesNo = mysqli_num_rows(mysqli_query($con, "SELECT * FROM feedbackTable"));
     $moviesNo = mysqli_num_rows(mysqli_query($con, "SELECT * FROM movieTable"));
     ?>
-    
+
     <?php include('header.php'); ?>
 
     <div class="admin-container">
@@ -43,14 +46,12 @@ if (isset($_POST['but_logout'])) {
         <?php include('sidebar.php'); ?>
         <div class="admin-section admin-section2">
             <div class="admin-section-column">
-
-
                 <div class="admin-section-panel admin-section-panel2">
                     <div class="admin-panel-section-header">
                         <h2>Movies</h2>
                         <i class="fas fa-film" style="background-color: #4547cf"></i>
                     </div>
-                    <form action="" method="POST">
+                    <form action="" method="POST" enctype="multipart/form-data" >
                         <input placeholder="Title" type="text" name="movieTitle" required>
                         <input placeholder="Genre" type="text" name="movieGenre" required>
                         <input placeholder="Duration" type="number" name="movieDuration" required>
@@ -67,28 +68,47 @@ if (isset($_POST['but_logout'])) {
                         <button type="submit" value="submit" name="submit" class="form-btn">Add Movie</button>
                         <?php
                         if (isset($_POST['submit'])) {
-                            $insert_query = "INSERT INTO 
-                            movieTable (  movieImg,
-                                            movieTitle,
-                                            movieGenre,
-                                            movieDuration,
-                                            movieRelDate,
-                                            movieDirector,
-                                            movieActors,
-                                            mainhall,
-                                            viphall,
-                                            privatehall)
-                            VALUES (        'img/" . $_POST['movieImg'] . "',
-                                            '" . $_POST["movieTitle"] . "',
-                                            '" . $_POST["movieGenre"] . "',
-                                            '" . $_POST["movieDuration"] . "',
-                                            '" . $_POST["movieRelDate"] . "',
-                                            '" . $_POST["movieDirector"] . "',
-                                            '" . $_POST["movieActors"] . "',
-                                            '" . $_POST["mainhall"] . "',
-                                            '" . $_POST["viphall"] . "',
-                                            '" . $_POST["privatehall"] . "')";
-                           $rs= mysqli_query($con, $insert_query);
+                                    // Dosya yükleme işlemi
+                        $target_dir_admin = "img/"; // Admin klasörü içindeki img klasörü
+                        $target_dir_main = "../img/"; // Ana dizindeki img klasörü
+
+                        $target_file_admin = $target_dir_admin . basename($_FILES["movieImg"]["name"]); // Admin klasörü için hedef dosya yolu ve ismi
+                        $target_file_main = $target_dir_main . basename($_FILES["movieImg"]["name"]); // Ana dizin için hedef dosya yolu ve ismi
+
+                        if (move_uploaded_file($_FILES["movieImg"]["tmp_name"], $target_file_admin)) {
+                         echo "Dosya admin klasörüne başarıyla yüklendi.";
+                            if (copy($target_file_admin, $target_file_main)) {
+                                echo "Dosya ana dizine başarıyla kopyalandı.";
+                            } else {
+                                echo "Dosya ana dizine kopyalanırken bir hata oluştu.";
+                            }
+                        } else {
+                            echo "Dosya yüklenirken bir hata oluştu.";
+                        }
+
+
+                        $insert_query = "INSERT INTO 
+                        movieTable (  movieImg,
+                                      movieTitle,
+                                      movieGenre,
+                                      movieDuration,
+                                      movieRelDate,
+                                      movieDirector,
+                                      movieActors,
+                                      mainhall,
+                                      viphall,
+                                      privatehall)
+                        VALUES (        '" . $target_file_admin . "',
+                                        '" . $_POST["movieTitle"] . "',
+                                        '" . $_POST["movieGenre"] . "',
+                                        '" . $_POST["movieDuration"] . "',
+                                        '" . $_POST["movieRelDate"] . "',
+                                        '" . $_POST["movieDirector"] . "',
+                                        '" . $_POST["movieActors"] . "',
+                                        '" . $_POST["mainhall"] . "',
+                                        '" . $_POST["viphall"] . "',
+                                        '" . $_POST["privatehall"] . "')";
+                        $rs= mysqli_query($con, $insert_query);
                            if ($rs) {
                             echo "<script>alert('Sussessfully Submitted');
                                   window.location.href='addmovie.php';</script>";
@@ -111,7 +131,7 @@ if (isset($_POST['but_logout'])) {
                             <th>Release_date</th>
                             <th>Director</th>
                             <th>More</th>
-                            
+
                         </tr>
                         <tbody>
                             <?php
@@ -130,15 +150,17 @@ if (isset($_POST['but_logout'])) {
                                 $releasedate = $row['movieRelDate'];
                                 $movieactor = $row['movieDirector'];
                             ?>
-                                <tr align="center">
-                                    <td><?php echo $ID; ?></td>
-                                    <td><?php echo $title; ?></td>
-                                    <td><?php echo $genere; ?></td>
-                                    <td><?php echo $releasedate; ?></td>
-                                    <td><?php echo $movieactor; ?></td>
-                                    <!--<td><?php echo  "<a href='deletemovie.php?id=" . $row['movieID'] . "'>delete</a>"; ?></td>-->
-                                    <td><button value="Book Now!" type="submit" onclick="" type="button" class="btn btn-danger"><?php echo  "<a href='deletemovie.php?id=" . $row['movieID'] . "'>delete</a>"; ?></button></td>
-                                </tr>
+                            <tr align="center">
+                                <td><?php echo $ID; ?></td>
+                                <td><?php echo $title; ?></td>
+                                <td><?php echo $genere; ?></td>
+                                <td><?php echo $releasedate; ?></td>
+                                <td><?php echo $movieactor; ?></td>
+                                <!--<td><?php echo  "<a href='deletemovie.php?id=" . $row['movieID'] . "'>delete</a>"; ?></td>-->
+                                <td><button value="Book Now!" type="submit" onclick="" type="button"
+                                        class="btn btn-danger"><?php echo  "<a href='deletemovie.php?id=" . $row['movieID'] . "'>delete</a>"; ?></button>
+                                </td>
+                            </tr>
                             <?php }
                             ?>
                         </tbody>

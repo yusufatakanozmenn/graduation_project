@@ -4,29 +4,41 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>SineVizyon Login</title>
     <style>
+        body {
+            background-repeat: no-repeat;
+
+            background-size: cover;
+            font-family: sans-serif;
+            
+        }
+
         /* Container */
         .container {
-            width: 40%;
+            width: 50%;
             margin: 0 auto;
+        }
+        .ticket{
+            width: 50%;
+            margin: 0 auto;
+            display: block;
+            margin-top: 10%;
         }
 
         /* Login */
         #div_login {
-            border: 1px solid gray;
             border-radius: 3px;
             width: 470px;
             height: 270px;
-            box-shadow: 0px 2px 2px 0px gray;
             margin: 0 auto;
         }
 
         #div_login h1 {
+            text-align: center;
             margin-top: 0px;
             font-weight: normal;
             padding: 10px;
-            background-color: cornflowerblue;
             color: white;
             font-family: sans-serif;
         }
@@ -40,20 +52,26 @@
         #div_login .textbox {
             width: 96%;
             padding: 7px;
+            position: center;
         }
 
         #div_login input[type=submit] {
+            position: relative; /* Change from center to relative */
             padding: 7px;
             width: 100px;
-            background-color: lightseagreen;
+            background-color: #ea26158a;
             border: 0px;
             color: white;
+            display: block; /* Add this */
+            margin: auto; /* Add this */
         }
     </style>
 </head>
 
-<body>
+<body background="./bg.jpg">
     <div class="container">
+        <img class="ticket" src="./sinem.png" alt="">
+        <br>
         <form method="post" action="">
             <div id="div_login">
                 <h1>Login</h1>

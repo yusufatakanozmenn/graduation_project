@@ -174,7 +174,7 @@ $db = mysqli_select_db($con, "cinema_db");
 						<tr>
 							<td class="title">
 								<div class="footer-brand">
-									<h1 class="footer-heading">ARVR Cinema</h1>
+									<h1 class="footer-heading">SineVizyon</h1>
 								</div>
 							</td>
 							<td>
@@ -182,7 +182,7 @@ $db = mysqli_select_db($con, "cinema_db");
 								Created: <?php date_default_timezone_set('Asia/Kolkata');
 											echo $date = DATE("d-m-y h:i:s", strtotime($date));  ?><br>
 								Due: <?php echo "After 24 Hours"; ?>
-								<!-- 1 Day = 24*60*60 = 86400 -->
+								
 							</td>
 						</tr>
 					</table>
@@ -193,9 +193,9 @@ $db = mysqli_select_db($con, "cinema_db");
 					<table>
 						<tr>
 							<td>
-								ARVR Cinema<br>
-								393 , Kohat Enclave<br>
-								Delhi-110088
+								SineVizyon<br>
+								Ankara<br>
+								Dikmen-11.11.11
 							</td>
 
 							<td>

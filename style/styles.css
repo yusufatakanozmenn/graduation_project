@@ -34,10 +34,10 @@ header {
   left: -25%;
   height: 219%;
   width: 200%;
-  background: #aa964c;
-  box-shadow: 0px 8px 0px rgba(0, 0, 0, 0.1);
+  background: linear-gradient(#000000,#ce2c16);
+  box-shadow: 0px 15px 0px #3931317a;
   transform: rotateZ(-6deg) skew(-6deg);
-}
+  }
 
 .navbar-brand .navbar-heading {
   position: absolute;
@@ -45,12 +45,12 @@ header {
   left: 2vmax;
   padding: 0;
   margin: 0;
-  color: #fff;
+  color: #f1f1f1;
   font-size: 7em;
   font-family: "Lobster", cursive;
   transform: rotateZ(-6deg);
-  text-shadow: 2px 2px 0px #6e5a11, 4px 4px 0px #836d24, 6px 6px 0px #a88616,
-    8px 8px 0px #b08909, 10px 10px 0px #ab995e;
+  text-shadow: 2px 2px 0px #3931317a, 4px 4px 0px #3931317a, 6px 6px 0px #3931317a,
+    8px 8px 0px #3931317a, 10px 10px 0px #3931317a;
 }
 
 nav {
@@ -79,11 +79,11 @@ nav {
 
 .navbar ul li:hover {
   cursor: pointer;
-  background-color: #aa964c;
+  background-color: #b93434;
 }
 
 .navbar ul li:hover > a {
-  color: #ffffff;
+  color: #f1f1f1;
 }
 
 .navbar-menu li ul {
@@ -96,8 +96,9 @@ nav {
 
 .navbar-menu li a {
   display: block;
-  color: #969696;
+  color: #364496;
   text-align: center;
+  font-weight: bold;
   padding: 12px 36px;
   text-decoration: none;
 }
@@ -115,7 +116,7 @@ footer {
   grid-gap: 5px;
   padding: 10px 10%;
   background-color: #4e4e4e;
-  color: #fff;
+  color: #f1f1f1;
   bottom: 0;
   width: 100%;
   margin-top: 40px;
@@ -138,11 +139,11 @@ footer {
     left: 1vmax;
     padding: 0;
     margin: 0;
-    color: #fff;
-    font-size: 7em;
+    color: #f1f1f1;
+    font-size: 8em;
     font-family: "Lobster", cursive;
-    text-shadow: 2px 2px 0px #6e5a11, 4px 4px 0px #836d24, 6px 6px 0px #a88616,
-      8px 8px 0px #b08909, 10px 10px 0px #ab995e;
+    text-shadow: 2px 2px 0px #ce2c16, 4px 4px 0px #ce2c16, 6px 6px 0px #ce2c16,
+      8px 8px 0px #ce2c16, 10px 10px 0px #ce2c16;
   }
   
 .footer-section {
@@ -222,21 +223,50 @@ footer {
 }
 
 .movies-container {
-  display: grid;
-  grid-column-gap: 10px;
-  grid-template-columns: auto auto auto auto auto auto;
-  padding: 10px 0;
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    padding: 10px 0;
+    scroll-snap-type: x mandatory;
 }
+
+.movies-inner-container {
+  display: flex;
+  flex-wrap: nowrap;
+  animation: scroll 120s linear infinite; /* Animasyon süresi ve tipi ayarlanabilir */
+}
+.movies-inner-container.paused {
+  animation-play-state: paused;
+}
+
+@keyframes scroll {
+  0% {
+    transform: translateX(0%);
+  }
+  50% {
+    transform: translateX(-100%); /* Sağa doğru kaydırma */
+  }
+  100% {
+    transform: translateX(0%); /* Başa dön */
+  }
+}
+
 
 .movie-box {
   position: relative;
-  margin: 10px 0;
+  margin: 10px;
+  width: 320px;
+  height: 500px; 
+  border-radius: 10px;
+  box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.45);
+  -webkit-box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.45);
 }
 
 .movie-box img {
-  display: block;
-  height: 100%;
   width: 100%;
+  height: 100%;
+  display: block;
+  transition: all 0.7s ease;
 }
 
 .movie-box .movie-info {
@@ -251,7 +281,7 @@ footer {
   width: 100%;
   opacity: 0;
   transition: 0.7s ease;
-  background-color: rgb(0, 0, 0);
+  background-color: #8b949e;
 }
 
 .movie-box:hover .movie-info {
@@ -260,25 +290,25 @@ footer {
 
 .movie-info > h3 {
   padding: 10px 0;
-  color: #fff;
+  color: #060b10;
 }
 
 .movie-info > a {
   display: inline-block;
   padding: 0.35em 1.2em;
-  border: 0.1em solid #ffffff;
+  border: 0.1em solid #993939f1;
   border-radius: 0.13em;
   box-sizing: border-box;
   text-decoration: none;
   font-weight: 300;
-  color: #ffffff;
+  color: #f1f1f1f1;
   text-align: center;
   transition: all 0.2s;
 }
 
 .movie-info > a:hover {
   color: #000000;
-  background-color: #ffffff;
+  background-color: #ff0505;
 }
 
 /* Trailers Section */
@@ -369,6 +399,21 @@ footer {
 
 .trailer-item-info i:hover {
 }
+.session-times {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin: 20px 0;
+  color: #8B0000; /* Dark Red */
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2); /* Add some shadow */
+  padding: 20px; /* Add some space around items */
+  transition: all 0.3s ease; /* Smooth transition for hover effect */
+}
+
+.session-times:hover {
+  color: #B22222; /* Lighter Red when hovered */
+  box-shadow: 0px 12px 24px 0px rgba(0,0,0,0.2); /* More shadow when hovered */
+}
 
 /* Services Section Styling */
 
@@ -434,7 +479,7 @@ footer {
   display: grid;
   grid-gap: 25px;
   grid-template-columns: 1fr 3fr;
-  background-color: #fff;
+  background-color: #f1f1f1;
   padding: 40px;
   box-shadow: 1px 0px 23px 3px rgba(0, 0, 0, 0.45);
   -webkit-box-shadow: 1px 0px 23px 3px rgba(0, 0, 0, 0.45);
@@ -453,7 +498,7 @@ footer {
 
 .booking-panel-section2 > i {
   background-color: #b6b6b6;
-  color: #fff;
+  color: #f1f1f1;
   padding: 15px;
   float: right;
   cursor: pointer;
@@ -475,12 +520,14 @@ footer {
 
 .booking-panel-section3 > .movie-box {
   margin: 0;
+  top: 20px;
+  left: 40px;
 }
 
 .booking-panel-section4 {
   border-radius: 10px;
   border: 1px #6e5a11 solid;
-  background-color: #fff;
+  background-color: #f1f1f1;
 }
 
 .booking-panel-section4 > .title {
@@ -509,7 +556,7 @@ footer {
 }
 
 .booking-form-container {
-  background-color: #6e5a11;
+  background-color: #4b3b3b8c;
   width: 100%;
   padding: 25px;
   margin: 20px 0;
@@ -530,8 +577,8 @@ footer {
   float: right;
   width: 25%;
   text-align: center;
-  background-color: #a3861e;
-  color: #fff;
+  background-color: #110c67;
+  color: #f1f1f1;
   transition: all 0.7s ease;
   cursor: pointer;
   height: 42px;
@@ -547,27 +594,27 @@ footer {
   /* Firefox */
   -webkit-appearance: none;
   /* Safari and Chrome */
-  background: #fff url("#") no-repeat calc(100% - 10px) 50%;
+  background: #f1f1f1 url("#") no-repeat calc(100% - 10px) 50%;
   /* custom arrow set as a background */
   background-image: url(data:image/svg+xml;base64,PHN2ZyB2ZXJzaW9uPSIxLjEiICB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB4PSIwcHgiIHk9IjBweCIgd2lkdGg9IjE1cHgiIGhlaWdodD0iOHB4IiB2aWV3Qm94PSIwIDAgMTUgOCIgZW5hYmxlLWJhY2tncm91bmQ9Im5ldyAwIDAgMTUgOCIgeG1sOnNwYWNlPSJwcmVzZXJ2ZSI+ICA8cGF0aCBmaWxsPSIjODk4OTg5IMKgIiBkPSJNMS4wMywwLjE3NWMtMC4yMzYtMC4yMzMtMC42MTgtMC4yMzMtMC44NTQsMGMtMC4yMzUsMC4yMzItMC4yMzYsMC42MSwwLDAuODQybDYuODk3LDYuODA5ICAgIGMwLjIzNiwwLjIzMywwLjYxOCwwLjIzMywwLjg1NCwwbDYuODk3LTYuODA5YzAuMjM2LTAuMjMzLDAuMjM2LTAuNjEsMC0wLjg0MmMtMC4yMzYtMC4yMzMtMC42MTgtMC4yMzMtMC44NTQsMEw3LjUsNi4zODQgICAgTDEuMDMsMC4xNzV6Ii8+ICA8L3N2Zz4=);
   box-sizing: border-box;
   border: solid 2px #cbcbcb;
-  border-radius: 4px;
+  border-radius: 10px;
   outline: none;
   cursor: pointer;
   color: #606060;
   text-indent: 0.01px;
   text-overflow: "";
-  width: 23%;
-  height: 42px;
+  width: 33%;
+  height: 40px;
   margin: 5px 0;
 }
 
 .booking-form-container form input {
-  border-radius: 4px;
+  border-radius: 10px;
   border: 1px solid #6e6e6e;
   padding: 10px;
-  width: 31%;
+  width: 20%;
   height: 42px;
   margin: 5px 0;
 }
@@ -596,7 +643,7 @@ footer {
   padding: 15px;
   background-color: #6e5a11;
   margin-right: 10px;
-  color: #fff;
+  color: #f1f1f1;
   cursor: pointer;
   transition: all 0.5s ease;
 }
@@ -621,7 +668,7 @@ footer {
   padding: 10px 0 10px 40px;
   background-color: #6e5a11;
   border: 1px solid #b6b6b6;
-  color: #fff;
+  color: #f1f1f1;
 }
 
 .schedule-table table tr th:first-child {
@@ -739,7 +786,7 @@ footer {
 }
 
 .admin-section-header {
-  color: #fff;
+  color: #f1f1f1;
   width: 100%;
   background-color: #3a3a3a;
   display: grid;
@@ -821,7 +868,13 @@ footer {
 
 .admin-logo {
   padding: 20px 10px;
-  background-color: #5f5f5f;
+  background-color: #495057;
+  color: #f1f1f1;
+  text-align: center;
+  font-size: 20px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
 }
 
 .admin-container {
@@ -838,7 +891,7 @@ footer {
   width: 100%;
   padding: 20px 10px;
   background-color: #3a3a3a;
-  color: #fff;
+  color: #f1f1f1;
   transition: all 0.3s ease;
   position: relative;
   cursor: pointer;
@@ -846,8 +899,8 @@ footer {
 
 .admin-section1 ul li:hover {
   background-color: #6e5a11;
-  color: #fff;
-  border-left: #fff 3px solid;
+  color: #f1f1f1;
+  border-left: #f1f1f1 3px solid;
 }
 
 .admin-section1 ul ul {
@@ -879,7 +932,7 @@ footer {
 .admin-section-panel {
   width: 100%;
   vertical-align: middle;
-  background-color: #fff;
+  background-color: #f1f1f1;
   -webkit-border-radius: 6px;
   -moz-border-radius: 6px;
   border-radius: 6px;
@@ -967,7 +1020,7 @@ footer {
   font-size: 25px;
   height: 50px;
   width: 50px;
-  color: #fff;
+  color: #f1f1f1;
   line-height: 50px;
   text-align: center;
   display: block;
@@ -1037,7 +1090,7 @@ footer {
   width: 49%;
   text-align: center;
   background-color: #a3861e;
-  color: #fff;
+  color: #f1f1f1;
   transition: all 0.7s ease;
   cursor: pointer;
   height: 42px;
@@ -1075,4 +1128,21 @@ footer {
 .show {
   display: block;
   transition: all 0.7s ease;
+}
+/* Slider */
+#slider {
+  position: relative; /* Add this */
+  width: 300px;
+  height: 300px; /* Adjust as needed */
+  overflow: hidden;
+}
+
+#slider .slide {
+  width: 300px;
+  height: 300px;
+  display: none;
+}
+
+#slider .slide.active {
+  display: block;
 }

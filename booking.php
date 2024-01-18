@@ -82,16 +82,6 @@ $row = mysqli_fetch_array($movieImageById);
                         <option value="imax">IMAX</option>
                         <option value="7d">7D</option>
                     </select>
-
-                    <select name="date" required>
-                        <option value="" disabled selected>DATE</option>
-                        <option value="12-3">March 12,2019</option>
-                        <option value="13-3">March 13,2019</option>
-                        <option value="14-3">March 14,2019</option>
-                        <option value="15-3">March 15,2019</option>
-                        <option value="16-3">March 16,2019</option>
-                    </select>
-
                     <select name="hour" required>
                         <option value="" disabled selected>TIME</option>
                         <option value="09-00">09:00 AM</option>
@@ -100,21 +90,20 @@ $row = mysqli_fetch_array($movieImageById);
                         <option value="18-00">06:00 PM</option>
                         <option value="21-00">09:00 PM</option>
                         <option value="24-00">12:00 PM</option>
-                    </select>
+                    </select >
+                    
 
                     <input placeholder="First Name" type="text" name="fName" required>
+                    <input type="date" name="date" required>
 
                     <input placeholder="Last Name" type="text" name="lName">
 
                     <input placeholder="Phone Number" type="text" name="pNumber" required>
                     <input placeholder="email" type="email" name="email" required>
                     <input type="hidden" name="movie_id" value="<?php echo $id; ?>">
-
-
-
                     <button type="submit" value="save" name="submit" class="form-btn">Book a seat</button>
-
                 </form>
+                
             </div>
         </div>
     </div>
