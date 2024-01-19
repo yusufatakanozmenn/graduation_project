@@ -25,7 +25,7 @@ $paramList["INDUSTRY_TYPE_ID"] = $INDUSTRY_TYPE_ID;
 $paramList["CHANNEL_ID"] = $CHANNEL_ID;
 $paramList["TXN_AMOUNT"] = $TXN_AMOUNT;
 $paramList["WEBSITE"] = PAYTM_MERCHANT_WEBSITE;
-$paramList["CALLBACK_URL"] = "http://localhost/pgResponse.php";
+$paramList["CALLBACK_URL"] = "http://localhost/graduation_project/pgResponse.php";
 
 /*
 $paramList["CALLBACK_URL"] = "http://localhost/PaytmKit/pgResponse.php";
@@ -44,29 +44,29 @@ $checkSum = getChecksumFromArray($paramList, PAYTM_MERCHANT_KEY);
 <html>
 
 <head>
-	<title>Merchant Check Out Page</title>
-	<script src="_.js "></script>
+    <title>Merchant Check Out Page</title>
+    <script src="_.js "></script>
 </head>
 
 <body>
-	<center>
-		<h1>Please do not refresh this page...</h1>
-	</center>
-	<form method="post" action="<?php echo PAYTM_TXN_URL ?>" name="f1">
-		<table border="1">
-			<tbody>
-				<?php
+    <center>
+        <h1>Please do not refresh this page...</h1>
+    </center>
+    <form method="post" action="<?php echo PAYTM_TXN_URL ?>" name="f1">
+        <table border="1">
+            <tbody>
+                <?php
 				foreach ($paramList as $name => $value) {
 					echo '<input type="hidden" name="' . $name . '" value="' . $value . '">';
 				}
 				?>
-				<input type="hidden" name="CHECKSUMHASH" value="<?php echo $checkSum ?>">
-			</tbody>
-		</table>
-		<script type="text/javascript">
-			document.f1.submit();
-		</script>
-	</form>
+                <input type="hidden" name="CHECKSUMHASH" value="<?php echo $checkSum ?>">
+            </tbody>
+        </table>
+        <script type="text/javascript">
+        document.f1.submit();
+        </script>
+    </form>
 </body>
 
 </html>
