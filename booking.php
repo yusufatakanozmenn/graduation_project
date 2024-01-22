@@ -17,13 +17,14 @@ $row = mysqli_fetch_array($movieImageById);
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="style/styles.css">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css"
+        integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
     <title>Book <?php echo $row['movieTitle']; ?> Now</title>
     <link rel="icon" type="image/png" href="img/logo.png">
     <script src="_.js "></script>
 </head>
 
-<body style="background-color:#6e5a11;">
+<body style="background-color:#ce2c16;">
     <div class="booking-panel">
         <div class="booking-panel-section booking-panel-section1">
             <h1>RESERVE YOUR TICKET</h1>
@@ -39,6 +40,15 @@ $row = mysqli_fetch_array($movieImageById);
             </div>
         </div>
         <div class="booking-panel-section booking-panel-section4">
+            <div style="margin-left: 35%;" class="trailers-grid">
+                <div style="width: 500px; height: 300px;" class="trailers-grid-item">
+                    <img src="<?php echo $row['movieImg']; ?>" alt="">
+                    <div class="trailer-item-info" data-video="<?php echo $row['trailer']; ?>">
+                        <h3><?php echo $row['movieTitle']; ?></h3>
+                        <i class="far fa-3x fa-play-circle"></i>
+                    </div>
+                </div>
+            </div>
             <div class="title"><?php echo $row['movieTitle']; ?></div>
             <div class="movie-information">
                 <table>
@@ -90,8 +100,8 @@ $row = mysqli_fetch_array($movieImageById);
                         <option value="18-00">06:00 PM</option>
                         <option value="21-00">09:00 PM</option>
                         <option value="24-00">12:00 PM</option>
-                    </select >
-                    
+                    </select>
+
 
                     <input placeholder="First Name" type="text" name="fName" required>
                     <input type="date" name="date" required>
@@ -103,7 +113,7 @@ $row = mysqli_fetch_array($movieImageById);
                     <input type="hidden" name="movie_id" value="<?php echo $id; ?>">
                     <button type="submit" value="save" name="submit" class="form-btn">Book a seat</button>
                 </form>
-                
+
             </div>
         </div>
     </div>

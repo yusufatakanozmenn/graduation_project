@@ -141,3 +141,4 @@ slider.addEventListener('mouseover', function() {
 slider.addEventListener('mouseout', function() {
     slider.classList.remove('paused');
 });
+

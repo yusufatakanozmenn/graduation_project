@@ -316,16 +316,19 @@ footer {
 .trailers-section > h1,
 .trailers-section > h3 {
   padding: 0 10%;
+  font-family: Arial, sans-serif;
 }
 
 .trailers-section > h1 {
   text-align: left;
-  color: #6e5a11;
+  color: #333;
+  font-size: 2em;
 }
 
 .trailers-section > h3 {
   text-align: left;
-  color: #969696;
+  color: #666;
+  font-size: 1.5em;
 }
 
 .trailers-section > h3:after {
@@ -333,7 +336,7 @@ footer {
   display: block;
   height: 3px;
   width: 7%;
-  background: #6e5a11;
+  background: #333;
   position: relative;
   bottom: -10px;
 }
@@ -341,18 +344,20 @@ footer {
 .trailers-grid {
   margin: 60px 0;
   display: grid;
-  grid-template-columns: auto auto auto;
-  height: 80vh;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  grid-gap: 20px;
+  height: auto;
 }
 
 .trailers-grid-item {
-  font-size: 30px;
+  font-size: 1em;
   text-align: center;
   overflow: hidden;
   width: 100%;
   height: 100%;
   position: relative;
   vertical-align: middle;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); /* Add box shadow */
 }
 
 .trailer-item-video {
@@ -364,6 +369,7 @@ footer {
   width: 100%;
   height: 100%;
   display: block;
+  object-fit: cover;
 }
 
 .trailer-item-info {
@@ -377,8 +383,12 @@ footer {
   vertical-align: middle;
   opacity: 0;
   transition: 0.7s ease;
-  background-color: rgb(0, 0, 0);
+  background-color: rgba(0, 0, 0, 0.5);
   padding: 85px 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .trailer-item-info:hover {
@@ -387,18 +397,20 @@ footer {
 
 .trailer-item-info h3 {
   vertical-align: middle;
-  color: rgb(255, 255, 255);
+  color: #fff;
 }
 
 .trailer-item-info i {
   margin: 10px;
-  color: rgb(255, 255, 255);
+  color: #fff;
   cursor: pointer;
   transition: all 0.2s ease;
 }
 
 .trailer-item-info i:hover {
+  color: #ccc;
 }
+
 .session-times {
   display: flex;
   flex-wrap: wrap;
@@ -414,8 +426,14 @@ footer {
   color: #B22222; /* Lighter Red when hovered */
   box-shadow: 0px 12px 24px 0px rgba(0,0,0,0.2); /* More shadow when hovered */
 }
-
 /* Services Section Styling */
+@keyframes fadeIn {
+  0% {opacity: 0;}
+  100% {opacity: 1;}
+}
+.service-item {
+  animation: fadeIn 2s ease-in-out;
+}
 
 .services-section {
   padding: 0 10%;
@@ -486,7 +504,7 @@ footer {
   -moz-box-shadow: 1px 0px 23px 3px rgba(0, 0, 0, 0.45);
   transition: all 0.7s ease;
   width: 90%;
-  height: 100vh;
+  height: 120vh;
   margin: 0 auto;
 }
 

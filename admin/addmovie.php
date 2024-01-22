@@ -51,13 +51,14 @@ if (isset($_POST['but_logout'])) {
                         <h2>Movies</h2>
                         <i class="fas fa-film" style="background-color: #4547cf"></i>
                     </div>
-                    <form action="" method="POST" enctype="multipart/form-data" >
+                    <form action="" method="POST" enctype="multipart/form-data">
                         <input placeholder="Title" type="text" name="movieTitle" required>
                         <input placeholder="Genre" type="text" name="movieGenre" required>
                         <input placeholder="Duration" type="number" name="movieDuration" required>
                         <input placeholder="Release Date" type="date" name="movieRelDate" required>
                         <input placeholder="Director" type="text" name="movieDirector" required>
                         <input placeholder="Actors" type="text" name="movieActors" required>
+                        <input placeholder="Trailer" type="text" name="trailer" required>
                         <label>Price</label>
                         <input placeholder="Main Hall" type="text" name="mainhall" required><br />
                         <input placeholder="Vip-Hall" type="text" name="viphall" required><br />
@@ -95,6 +96,7 @@ if (isset($_POST['but_logout'])) {
                                       movieRelDate,
                                       movieDirector,
                                       movieActors,
+                                      trailer,
                                       mainhall,
                                       viphall,
                                       privatehall)
@@ -105,6 +107,7 @@ if (isset($_POST['but_logout'])) {
                                         '" . $_POST["movieRelDate"] . "',
                                         '" . $_POST["movieDirector"] . "',
                                         '" . $_POST["movieActors"] . "',
+                                        '" . $_POST["trailer"] . "',
                                         '" . $_POST["mainhall"] . "',
                                         '" . $_POST["viphall"] . "',
                                         '" . $_POST["privatehall"] . "')";
