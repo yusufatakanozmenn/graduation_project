@@ -8,6 +8,7 @@
         <ul class="navbar-menu">
             <li><a href="index.php">Home</a></li>
             <li><a href="movies.php">Movies</a></li>
+            <li><a href="calendar.php">Calendar</a></li>
             <li><a href="contact-us.php">Contact</a></li>
         </ul>
     </nav>

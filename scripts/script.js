@@ -124,21 +124,27 @@ $(".booking-panel-section2").on('click', function () {
 
 
 
-$(".admin-navigation-schedule").on('click', function () {
-    $('.admin-navigation-schedule-dropdwn').show();
-});
-
-$(".admin-navigation-schedule").on('click', function () {
-    $('.admin-navigation-schedule-dropdwn').hide();
-});
-
 var slider = document.querySelector('.movies-inner-container');
+var slides = slider.children;
+var index = 0;
 
+// Otomatik hareket
+var intervalId = setInterval(function() {
+    slider.style.transform = 'translateX(' + (-index * 100) + '%)';
+    index = (index + 1) % slides.length;
+}, 2000); // 2000 ms = 2 saniye
+
+// Mouse üzerindeyken durdur
 slider.addEventListener('mouseover', function() {
+    clearInterval(intervalId);
     slider.classList.add('paused');
 });
 
+// Mouse çıktığında devam et
 slider.addEventListener('mouseout', function() {
+    intervalId = setInterval(function() {
+        slider.style.transform = 'translateX(' + (-index * 100) + '%)';
+        index = (index + 1) % slides.length;
+    }, 2000);
     slider.classList.remove('paused');
 });
-

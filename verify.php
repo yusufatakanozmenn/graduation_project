@@ -35,6 +35,46 @@ if (isset($_POST['submit'])) {
 <!doctype html>
 <html lang="en">
 
+<?php
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
+
+require 'vendor/autoload.php';
+
+if (isset($_POST['submit'])) {
+
+    $qry = "INSERT INTO bookingtable(`movieID`, `bookingTheatre`, `bookingType`, `bookingDate`, `bookingTime`, `bookingFName`, `bookingLName`, `bookingPNumber`, `bookingEmail`,`amount`, `ORDERID`)VALUES ('$movieid','$theatre','$type','$date','$time','$fname','$lname','$mobile','$email','Not Paid','$order')";
+
+    $result = mysqli_query($con, $qry);
+
+    if ($result) {
+        $mail = new PHPMailer(true);
+
+        try {
+            $mail->Host = 'smtp.gmail.com';  // Gmail SMTP sunucusu
+            $mail->Username = 'yusufatakanozmen06@gmail.com';  
+            $mail->Password = 'wmj42Mg58PsRLU';  
+            $mail->SMTPSecure = 'tls';  
+            $mail->Port = 587;                              
+
+            //Recipients
+            $mail->setFrom('yusufatakanozmen06@gmail.com', 'SineVizyon');
+            $mail->addAddress($email, $fname);     
+
+            //Content
+            $mail->isHTML(true);                                  
+            $mail->Subject = 'Ticket Purchase Successful';
+            $mail->Body    = 'Thank you for your purchase. Here are the details of your ticket: ...';
+
+            $mail->send();
+            echo 'Message has been sent';
+        } catch (Exception $e) {
+            echo 'Message could not be sent. Mailer Error: ', $mail->ErrorInfo;
+        }
+    }
+}
+?>
+
 <head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
@@ -93,6 +133,7 @@ if (isset($_POST['submit'])) {
                         <input type="hidden" name="CUST_ID" value="<?php echo $cust; ?>">
                         <input type="hidden" name="INDUSTRY_TYPE_ID" value="retail">
                         <input type="hidden" name="CHANNEL_ID" value="WEB">
+                        <input type="hidden" name="TXN_AMOUNT" value="100">
                         <button value="Book Now!" type="submit" onclick="" type="button" class="btn btn-danger">Pay
                             Now!</button>
                     </form>

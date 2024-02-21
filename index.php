@@ -10,7 +10,64 @@
         integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
     <title>SineVizyon</title>
     <link rel="icon" type="image/png" href="img/logo.png">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+    <?php
+    include "connection.php";
+    $sql = "SELECT * FROM movieTable ORDER BY movieID DESC LIMIT 1";
+    $result = mysqli_query($con, $sql);
+    $latestMovie = mysqli_fetch_array($result);
+    ?>
 
+    <script>
+    // PHP'den alınan veriyi JavaScript'e aktar
+    var latestMovie = <?php echo json_encode($latestMovie); ?>;
+
+    window.onload = function() {
+        // Eğer 'hideAlert' cookie'si yoksa veya 'false' ise, alert'i göster
+        if (!getCookie('hideAlert') || getCookie('hideAlert') === 'false') {
+            Swal.fire({
+                title: 'Yeni Vizyonda',
+                html: '<h3>' + latestMovie.movieTitle + '</h3><br>' +
+                    '<img src="' + latestMovie.movieImg + '" width="250px">',
+
+                showCancelButton: true,
+                confirmButtonText: 'Rezervasyon Yap',
+                cancelButtonText: 'Bir daha gösterme',
+                confirmButtonColor: '#3085d6',
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    window.location.href = "booking.php?id=" + latestMovie.movieID;
+                } else if (result.dismiss === Swal.DismissReason.cancel) {
+                    // 'Bir daha gösterme' butonuna basılırsa, 'hideAlert' cookie'sini 'true' olarak ayarla
+                    setCookie('hideAlert', 'true', 7);
+                }
+            })
+        }
+    };
+
+    // Cookie almak için bir fonksiyon
+    function getCookie(name) {
+        var nameEQ = name + "=";
+        var ca = document.cookie.split(';');
+        for (var i = 0; i < ca.length; i++) {
+            var c = ca[i];
+            while (c.charAt(0) == ' ') c = c.substring(1, c.length);
+            if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length, c.length);
+        }
+        return null;
+    }
+
+    // Cookie ayarlamak için bir fonksiyon
+    function setCookie(name, value, days) {
+        var expires = "";
+        if (days) {
+            var date = new Date();
+            date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+            expires = "; expires=" + date.toUTCString();
+        }
+        document.cookie = name + "=" + (value || "") + expires + "; path=/";
+    }
+    </script>
 
 
 </head>
@@ -141,20 +198,7 @@
                     <i class="far fa-3x fa-play-circle"></i>
                 </div>
             </div>
-            <div class="trailers-grid-item">
-                <img src="img/movie-thumb-4.jpg" alt="">
-                <div class="trailer-item-info" data-video="Ze5YA4mkzhI">
-                    <h3>Secret Men Club</h3>
-                    <i class="far fa-3x fa-play-circle"></i>
-                </div>
-            </div>
-            <div class="trailers-grid-item">
-                <img src="img/movie-thumb-6.jpg" alt="">
-                <div class="trailer-item-info" data-video="RyFlfN4dD14">
-                    <h3>The Vanishing</h3>
-                    <i class="far fa-3x fa-play-circle"></i>
-                </div>
-            </div>
+
         </div>
         <footer></footer>
 
